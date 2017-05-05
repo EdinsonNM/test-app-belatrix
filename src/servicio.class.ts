@@ -59,6 +59,9 @@ export class Servicio {
 		return resultado;
 	}
 	readRow(data:Data,row: string) {
+		try {
+			
+	
 		let cols = row.split(/\s\//gi);
 		let i=0;
 		for(let col of cols){
@@ -92,6 +95,9 @@ export class Servicio {
 			}
 			i++;
 		}
+		} catch (error) {
+			throw "Format is invalid"	
+		}
 
 	}
 	validateFormat(data: string): Result {
@@ -102,7 +108,7 @@ export class Servicio {
 		};
 		if(data.trim()==""){
 			result.success = false;
-			result.error="data is Empty";
+			result.error="data is empty";
 		}
 		return result;
 
