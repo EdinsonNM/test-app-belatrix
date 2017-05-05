@@ -129,38 +129,43 @@ var Servicio = (function () {
         return resultado;
     };
     Servicio.prototype.readRow = function (data, row) {
-        var cols = row.split(/\s\//gi);
-        var i = 0;
-        for (var _i = 0, cols_1 = cols; _i < cols_1.length; _i++) {
-            var col = cols_1[_i];
-            if (col.trim() != '') {
-                var tmpCol = col.trim().split(/\s/);
-                var item = {
-                    id: tmpCol.shift(),
-                    title: tmpCol.join(' ')
-                };
-                switch (i) {
-                    case 0:
-                        var departamento = item;
-                        data.departamentos[item.id] = departamento;
-                        break;
-                    case 1:
-                        if (!data.provincias.hasOwnProperty(departamento.id)) {
-                            data.provincias[departamento.id] = {};
-                        }
-                        var provincia = item;
-                        data.provincias[departamento.id][provincia.id] = (provincia);
-                        break;
-                    case 2:
-                        if (!data.distritos.hasOwnProperty(provincia.id)) {
-                            data.distritos[provincia.id] = {};
-                        }
-                        var distrito = item;
-                        data.distritos[provincia.id][distrito.id] = (distrito);
-                        break;
+        try {
+            var cols = row.split(/\s\//gi);
+            var i = 0;
+            for (var _i = 0, cols_1 = cols; _i < cols_1.length; _i++) {
+                var col = cols_1[_i];
+                if (col.trim() != '') {
+                    var tmpCol = col.trim().split(/\s/);
+                    var item = {
+                        id: tmpCol.shift(),
+                        title: tmpCol.join(' ')
+                    };
+                    switch (i) {
+                        case 0:
+                            var departamento = item;
+                            data.departamentos[item.id] = departamento;
+                            break;
+                        case 1:
+                            if (!data.provincias.hasOwnProperty(departamento.id)) {
+                                data.provincias[departamento.id] = {};
+                            }
+                            var provincia = item;
+                            data.provincias[departamento.id][provincia.id] = (provincia);
+                            break;
+                        case 2:
+                            if (!data.distritos.hasOwnProperty(provincia.id)) {
+                                data.distritos[provincia.id] = {};
+                            }
+                            var distrito = item;
+                            data.distritos[provincia.id][distrito.id] = (distrito);
+                            break;
+                    }
                 }
+                i++;
             }
-            i++;
+        }
+        catch (error) {
+            throw "Format is invalid";
         }
     };
     Servicio.prototype.validateFormat = function (data) {
@@ -171,7 +176,7 @@ var Servicio = (function () {
         };
         if (data.trim() == "") {
             result.success = false;
-            result.error = "data is Empty";
+            result.error = "data is empty";
         }
         return result;
     };
