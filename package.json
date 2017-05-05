@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "node_modules/.bin/webpack --module-bind 'txt=raw-loader'",
-    "start": "node_modules/.bin/webpack-dev-server --module-bind 'txt=raw-loader'"
+    "start": "node_modules/.bin/webpack-dev-server --module-bind 'txt=raw-loader'",
+    "deploy": "npm run build && git subtree push --prefix build origin gh-pages"
   },
   "keywords": [
     "test",
