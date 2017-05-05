@@ -17,10 +17,11 @@
   "author": "Edinson Nuñez More",
   "license": "ISC",
   "dependencies": {
-    "@types/underscore": "^1.8.0"
+    "@types/node": "^7.0.18",
+    "@types/underscore": "^1.8.0",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
-    "@types/node": "^7.0.16",
     "copy-webpack-plugin": "^4.0.1",
     "html-webpack-plugin": "^2.28.0",
     "raw-loader": "^0.5.1",
